@@ -41,6 +41,26 @@ public class RealTest {
     }
 
     @Test
+    public void shouldCompareValues() {
+        assertEquals(new Real(1), new Real(1));
+    }
+
+    @Test
+    public void shouldCompareUnequalValues() {
+        assertNotEquals(new Real(1), new Real(2));
+    }
+
+    @Test
+    public void shouldHandleIncompatibleTypeComparisons() {
+        assertNotEquals(new BigDecimal(1), new Real(1));
+    }
+
+    @Test
+    public void shouldHandleNullComparisons() {
+        assertNotEquals(null, new Real(1));
+    }
+
+    @Test
     public void shouldFormatIntegerWithoutDecimals() {
         Real real = new Real(123.0);
         assertEquals("123", real.toString());
