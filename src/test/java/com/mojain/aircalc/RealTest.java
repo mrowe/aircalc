@@ -46,6 +46,11 @@ public class RealTest {
     }
 
     @Test
+    public void shouldCompareWithinPrecisionDelta() {
+        assertEquals(new Real(1.0000000000000001), new Real(1.0000000000000002));
+    }
+
+    @Test
     public void shouldCompareUnequalValues() {
         assertNotEquals(new Real(1), new Real(2));
     }

@@ -54,13 +54,13 @@ public class Real {
     public Real divide(Real divisor) {
         return new Real(value.divide(divisor.value, SCALE, RoundingMode.HALF_UP));
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Real)) return false;
         Real real = (Real) o;
-        return value.equals(real.value);
+        return value.compareTo(real.value) == 0;
     }
 
     @Override
