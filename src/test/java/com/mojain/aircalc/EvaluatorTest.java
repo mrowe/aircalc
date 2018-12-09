@@ -45,4 +45,15 @@ public class EvaluatorTest {
         stack.pop();
         evaluator.evaluate(stack, new Plus());
     }
+
+    @Test
+    public void errorShouldNotConsumeOperand() {
+        stack.pop();
+        try {
+            evaluator.evaluate(stack, new Plus());
+        } catch (InsufficientOperandsException e) {
+            // expected
+        }
+        assertEquals(1, stack.size());
+    }
 }
