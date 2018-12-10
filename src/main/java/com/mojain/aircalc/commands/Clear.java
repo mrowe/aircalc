@@ -13,4 +13,12 @@ public class Clear implements Command {
         stack.clear();
         return RUNNING;
     }
+
+    /**
+     * All instances of Clear are effectively the same thing.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Clear;
+    }
 }

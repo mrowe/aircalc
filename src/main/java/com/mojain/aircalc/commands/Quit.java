@@ -10,4 +10,12 @@ public class Quit implements Command {
     public State invoke(Stack stack) {
         return State.QUIT;
     }
+
+    /**
+     * All instances of Quit are effectively the same thing.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Quit;
+    }
 }

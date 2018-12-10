@@ -4,6 +4,7 @@ import com.mojain.aircalc.Command;
 import com.mojain.aircalc.Real;
 import com.mojain.aircalc.State;
 
+import java.util.Objects;
 import java.util.Stack;
 
 public class Push implements Command {
@@ -17,5 +18,18 @@ public class Push implements Command {
     public State invoke(Stack<Real> stack) {
         stack.push(number);
         return State.RUNNING;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Push push = (Push) o;
+        return number.equals(push.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }
