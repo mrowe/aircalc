@@ -19,4 +19,9 @@ public class Divides implements Operator {
     }
 
     public String toString() { return "/"; }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Divides;
+    }
 }

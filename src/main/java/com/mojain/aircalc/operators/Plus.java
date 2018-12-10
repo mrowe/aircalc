@@ -19,4 +19,9 @@ public class Plus implements Operator {
     }
 
     public String toString() { return "+"; }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Plus;
+    }
 }

@@ -30,4 +30,9 @@ public class SquareRootTest {
     public void shouldThrowExceptionWhenAdditionalOperands() {
         assertEquals(new Real(1), operator.evaluate(new Real(1), new Real(1)));
     }
+
+    @Test
+    public void equals() {
+        assertEquals(new SquareRoot(), new SquareRoot());
+    }
 }
