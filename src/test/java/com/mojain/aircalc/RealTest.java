@@ -4,7 +4,8 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class RealTest {
 
@@ -22,6 +23,17 @@ public class RealTest {
     public void shouldMaintainPrecisionAcrossOperations() {
         Real real = new Real(2.0);
         assertRealEquals(2.0, real.divide(new Real(2.0)).multiply(new Real(2.0)));
+    }
+
+    @Test
+    public void shouldParseStringRepresentation() {
+        Real real = new Real("0.123");
+        assertRealEquals(0.123, real);
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void shouldThrowExceptionForInvalidString() {
+        new Real("foo");
     }
 
     @Test

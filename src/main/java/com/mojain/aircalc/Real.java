@@ -29,6 +29,10 @@ public class Real {
         this.value = value.setScale(SCALE, RoundingMode.HALF_UP);
     }
 
+    public Real(String token) {
+        this(new BigDecimal(token));
+    }
+
     public double asDouble() {
         return value.doubleValue();
     }
