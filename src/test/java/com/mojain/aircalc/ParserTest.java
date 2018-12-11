@@ -43,7 +43,7 @@ public class ParserTest {
 
     @Test
     public void shouldParseSingleDecimal() {
-        assertEquals(Collections.singletonList(new Push(new Real(0.12345))), parser.parse("0.12345"));
+        assertEquals(Collections.singletonList(new Push(new Real(1.4142135624))), parser.parse("1.4142135624"));
     }
 
     @Test
