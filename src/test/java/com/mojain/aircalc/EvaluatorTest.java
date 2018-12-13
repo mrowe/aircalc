@@ -5,19 +5,17 @@ import com.mojain.aircalc.operators.SquareRoot;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Stack;
-
 import static org.junit.Assert.*;
 
 public class EvaluatorTest {
 
     private Evaluator evaluator;
-    private Stack<Real> stack;
+    private Stack stack;
 
     @Before
     public void setUp() {
         evaluator = new Evaluator();
-        stack = new Stack<>();
+        stack = new Stack();
         stack.push(new Real(1));
         stack.push(new Real(2));
     }

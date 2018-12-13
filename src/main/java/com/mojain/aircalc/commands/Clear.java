@@ -1,9 +1,8 @@
 package com.mojain.aircalc.commands;
 
 import com.mojain.aircalc.Command;
+import com.mojain.aircalc.Stack;
 import com.mojain.aircalc.State;
-
-import java.util.Stack;
 
 import static com.mojain.aircalc.State.RUNNING;
 

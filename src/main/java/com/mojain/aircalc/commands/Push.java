@@ -1,11 +1,8 @@
 package com.mojain.aircalc.commands;
 
-import com.mojain.aircalc.Command;
-import com.mojain.aircalc.Real;
-import com.mojain.aircalc.State;
+import com.mojain.aircalc.*;
 
 import java.util.Objects;
-import java.util.Stack;
 
 public class Push implements Command {
     private final Real number;
@@ -15,7 +12,7 @@ public class Push implements Command {
     }
 
     @Override
-    public State invoke(Stack<Real> stack) {
+    public State invoke(Stack stack) {
         stack.push(number);
         return State.RUNNING;
     }
