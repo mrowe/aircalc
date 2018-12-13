@@ -5,6 +5,17 @@ import com.mojain.aircalc.Real;
 
 public class Times implements Operator {
 
+    private final int tokenNumber;
+
+    public Times(int tokenNumber) {
+        this.tokenNumber = tokenNumber;
+    }
+
+    @Override
+    public int tokenNumber() {
+        return tokenNumber;
+    }
+
     @Override
     public int arity() {
         return 2;

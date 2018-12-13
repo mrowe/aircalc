@@ -1,7 +1,10 @@
 package com.mojain.aircalc;
 
 public class InsufficientOperandsException extends RuntimeException {
-    public InsufficientOperandsException(String message) {
+    public final int tokenNumber;
+
+    public InsufficientOperandsException(int tokenNumber, String message) {
         super(message);
+        this.tokenNumber = tokenNumber;
     }
 }

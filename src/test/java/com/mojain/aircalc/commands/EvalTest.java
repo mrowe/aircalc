@@ -9,8 +9,8 @@ public class EvalTest {
 
     @Test
     public void equals() {
-        Eval a = new Eval(new Plus());
-        Eval b = new Eval(new Plus());
+        Eval a = new Eval(new Plus(1));
+        Eval b = new Eval(new Plus(1));
         assertEquals(a, b);
     }
 }

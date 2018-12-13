@@ -6,7 +6,7 @@ public class Evaluator {
     public void evaluate(Stack<Real> stack, Operator operator) {
         Real result;
         if (stack.size() < operator.arity()) {
-            throw new InsufficientOperandsException(String.format("%s", operator));
+            throw new InsufficientOperandsException(operator.tokenNumber(), String.format("%s", operator));
         }
         switch (operator.arity()) {
             case 1:

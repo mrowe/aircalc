@@ -13,7 +13,7 @@ public class SquareRootTest {
 
     @Before
     public void setUp() {
-        operator = new SquareRoot();
+        operator = new SquareRoot(1);
     }
 
     @Test
@@ -33,6 +33,6 @@ public class SquareRootTest {
 
     @Test
     public void equals() {
-        assertEquals(new SquareRoot(), new SquareRoot());
+        assertEquals(new SquareRoot(1), new SquareRoot(1));
     }
 }
