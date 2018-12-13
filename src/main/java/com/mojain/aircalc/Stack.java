@@ -27,4 +27,8 @@ public class Stack {
     public Real peek() {
         return stack.peek();
     }
+
+    public String toString() {
+        return stack.toString().replaceAll("[\\[\\],]", "");
+    }
 }
