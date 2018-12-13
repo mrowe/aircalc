@@ -13,6 +13,7 @@ def check(message, input, expected)
       stdin.close
       actual = stdout.readlines.map{|a| a.strip}.drop(1)
       puts "#{message}: #{expected == actual ? "." : "got #{actual} expected #{expected}"}"
+      @fail ||= (expected != actual)
    end
 end
 
@@ -49,3 +50,4 @@ check "example 8",
    ["[11]"]
 
 puts
+exit @fail ? 1 : 0
