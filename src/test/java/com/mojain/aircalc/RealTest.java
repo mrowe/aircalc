@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotEquals;
 public class RealTest {
 
     @Test
-    public void shouldStoreAValue(){
+    public void shouldStoreAValue() {
         assertEquals(123.0, new Real(123.0).asDouble(), 0.0);
     }
 

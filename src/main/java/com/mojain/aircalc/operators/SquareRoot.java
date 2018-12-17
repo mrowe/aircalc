@@ -18,7 +18,9 @@ public class SquareRoot implements Operator {
         return new Real(Math.sqrt(operands[0].asDouble()));
     }
 
-    public String toString() { return "√"; }
+    public String toString() {
+        return "√";
+    }
 
     @Override
     public boolean equals(Object o) {

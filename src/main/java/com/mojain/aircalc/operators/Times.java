@@ -18,7 +18,9 @@ public class Times implements Operator {
         return operands[1].multiply(operands[0]);
     }
 
-    public String toString() { return "*"; }
+    public String toString() {
+        return "*";
+    }
 
     @Override
     public boolean equals(Object o) {
