@@ -15,6 +15,7 @@ public class Eval implements com.mojain.aircalc.Command {
 
     @Override
     public State invoke(Stack stack) {
+        stack.checkpoint();
         evaluator.evaluate(stack, operator);
         return State.RUNNING;
     }

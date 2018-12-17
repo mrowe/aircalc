@@ -13,6 +13,7 @@ public class Push implements Command {
 
     @Override
     public State invoke(Stack stack) {
+        stack.checkpoint();
         stack.push(number);
         return State.RUNNING;
     }

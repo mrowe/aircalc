@@ -2,33 +2,52 @@ package com.mojain.aircalc;
 
 public class Stack {
 
-    private final java.util.Stack<Real> stack;
+    private final java.util.Stack<java.util.Stack<Real>> stacks;
 
     public Stack() {
-        stack = new java.util.Stack<>();
+        stacks = new java.util.Stack<>();
+        stacks.push(new java.util.Stack<>());
+    }
+
+    private java.util.Stack<Real> currentStack() {
+        return stacks.peek();
     }
 
     public void clear() {
-        stack.clear();
+        currentStack().clear();
     }
 
     public int size() {
-        return stack.size();
-    }
-
-    public Real pop() {
-        return stack.pop();
-    }
-
-    public void push(Real item) {
-        stack.push(item);
+        return currentStack().size();
     }
 
     public Real peek() {
-        return stack.peek();
+        return currentStack().peek();
     }
 
     public String toString() {
-        return stack.toString().replaceAll("[\\[\\],]", "");
+        return currentStack().toString().replaceAll("[\\[\\],]", "");
+    }
+
+    public Real pop() {
+        return currentStack().pop();
+    }
+
+    public void push(Real item) {
+        currentStack().push(item);
+    }
+
+    public void undo() {
+        // can't undo past first version
+        if (stacks.size() > 1) {
+            stacks.pop();
+        } else {
+            currentStack().clear();
+        }
+    }
+
+    public void checkpoint() {
+        java.util.Stack<Real> newStack = (java.util.Stack<Real>) currentStack().clone();
+        stacks.push(newStack);
     }
 }

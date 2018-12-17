@@ -9,6 +9,7 @@ import static com.mojain.aircalc.State.RUNNING;
 public class Clear implements Command {
     @Override
     public State invoke(Stack stack) {
+        stack.checkpoint();
         stack.clear();
         return RUNNING;
     }
