@@ -15,6 +15,11 @@ class Parser {
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken();
 
+            if (token.equalsIgnoreCase("undo")) {
+                commands.add(new Undo());
+                continue;
+            }
+
             if (token.equalsIgnoreCase("quit")) {
                 commands.add(new Quit());
                 continue;

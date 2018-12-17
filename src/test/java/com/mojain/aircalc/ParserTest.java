@@ -27,6 +27,11 @@ public class ParserTest {
     }
 
     @Test
+    public void shouldParseUndoCommand() {
+        assertEquals(Collections.singletonList(new Undo()), parser.parse("undo"));
+    }
+
+    @Test
     public void shouldParseQuitCommand() {
         assertEquals(Collections.singletonList(new Quit()), parser.parse("quit"));
     }
