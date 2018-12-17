@@ -29,7 +29,9 @@ public class Plus implements Operator {
         return operands[1].add(operands[0]);
     }
 
-    public String toString() { return "+"; }
+    public String toString() {
+        return "+";
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,9 +1,8 @@
 package com.mojain.aircalc;
 
-import java.util.Stack;
 
 public class Evaluator {
-    public void evaluate(Stack<Real> stack, Operator operator) {
+    public void evaluate(Stack stack, Operator operator) {
         Real result;
         if (stack.size() < operator.arity()) {
             throw new InsufficientOperandsException(operator.tokenNumber(), String.format("%s", operator));

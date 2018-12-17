@@ -4,18 +4,20 @@ import com.mojain.aircalc.Command;
 import com.mojain.aircalc.Stack;
 import com.mojain.aircalc.State;
 
+import static com.mojain.aircalc.State.RUNNING;
 
-public class Quit implements Command {
+public class Undo implements Command {
     @Override
     public State invoke(Stack stack) {
-        return State.QUIT;
+        stack.undo();
+        return RUNNING;
     }
 
     /**
-     * All instances of Quit are effectively the same thing.
+     * All instances of Undo are effectively the same thing.
      */
     @Override
     public boolean equals(Object o) {
-        return o instanceof Quit;
+        return o instanceof Undo;
     }
 }

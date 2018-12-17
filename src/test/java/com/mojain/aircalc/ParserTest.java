@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
 
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -26,6 +25,11 @@ public class ParserTest {
     @Test
     public void shouldHandleEmptyInput() {
         assertTrue(parser.parse("").isEmpty());
+    }
+
+    @Test
+    public void shouldParseUndoCommand() {
+        assertEquals(Collections.singletonList(new Undo()), parser.parse("undo"));
     }
 
     @Test
@@ -83,7 +87,7 @@ public class ParserTest {
         List<Command> result = parser.parse("1 2 + 3 +");
         Command command = result.get(2);
         try {
-            command.invoke(new Stack<>());
+            command.invoke(new Stack());
             fail("Should throw InsufficientOperandsException");
         } catch (InsufficientOperandsException e) {
             assertEquals(3, e.tokenNumber);

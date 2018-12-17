@@ -7,13 +7,13 @@ import java.util.Objects;
 
 /**
  * A real number.
- *
+ * <p>
  * From the requirements:
- *
- *    "Numbers should be stored on the stack to at least 15 decimal places of precision, but displayed to 10 decimal
- *     places (or less if it causes no loss of precision)."
- *
- *  I'm choosing to interpret this as 10/15 places of precision over all, not _after_ the decimal point.
+ * <p>
+ * "Numbers should be stored on the stack to at least 15 decimal places of precision, but displayed to 10 decimal
+ * places (or less if it causes no loss of precision)."
+ * <p>
+ * I'm choosing to interpret this as 10/15 places of precision over all, not _after_ the decimal point.
  */
 public class Real {
 
