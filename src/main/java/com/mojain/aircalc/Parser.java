@@ -3,11 +3,23 @@ package com.mojain.aircalc;
 import com.mojain.aircalc.commands.*;
 import com.mojain.aircalc.operators.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 class Parser {
+
+    private static final Map<String, Command> VALID_TOKENS = new HashMap<String, Command>() {{
+        put("undo", new Undo());
+        put("quit", new Quit());
+        put("clear", new Clear());
+    }};
+
+    private static final Map<String, Operator> VALID_OPERATORS = new HashMap<String, Operator>() {{
+        put("sqrt", new SquareRoot());
+        put("+", new Plus());
+        put("-", new Minus());
+        put("*", new Times());
+        put("/", new Divides());
+    }};
 
     List<Command> parse(String input) {
         List<Command> commands = new ArrayList<>();
@@ -15,30 +27,19 @@ class Parser {
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken();
 
-            if (token.equalsIgnoreCase("undo")) {
-                commands.add(new Undo());
+            if (VALID_TOKENS.containsKey(token)) {
+                commands.add(VALID_TOKENS.get(token));
                 continue;
             }
 
-            if (token.equalsIgnoreCase("quit")) {
-                commands.add(new Quit());
-                continue;
-            }
-
-            if (token.equalsIgnoreCase("clear")) {
-                commands.add(new Clear());
+            if (VALID_OPERATORS.containsKey(token)) {
+                commands.add(new Eval(VALID_OPERATORS.get(token)));
                 continue;
             }
 
             Real number = tryToParseNumber(token);
             if (number != null) {
                 commands.add(new Push(number));
-                continue;
-            }
-
-            Operator operator = tryToParseOperator(token);
-            if (operator != null) {
-                commands.add(new Eval(operator));
                 continue;
             }
 
@@ -53,14 +54,5 @@ class Parser {
         } catch (NumberFormatException e) {
             return null;
         }
-    }
-
-    private Operator tryToParseOperator(String token) {
-        if (token.equalsIgnoreCase("sqrt")) return new SquareRoot();
-        if (token.equalsIgnoreCase("+")) return new Plus();
-        if (token.equalsIgnoreCase("-")) return new Minus();
-        if (token.equalsIgnoreCase("*")) return new Times();
-        if (token.equalsIgnoreCase("/")) return new Divides();
-        return null;
     }
 }
