@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class EvaluatorTest {
 
@@ -22,33 +23,38 @@ public class EvaluatorTest {
 
     @Test
     public void shouldEvaluateASimpleOperation() throws InsufficientOperandsException {
-        evaluator.evaluate(stack, new Plus());
+        evaluator.evaluate(stack, new Plus(1));
         assertEquals(new Real(3), stack.peek());
     }
 
     @Test
     public void unaryOperatorShouldConsumeAndReplaceOneElement() throws InsufficientOperandsException {
-        evaluator.evaluate(stack, new SquareRoot());
+        evaluator.evaluate(stack, new SquareRoot(1));
         assertEquals(2, stack.size());
     }
 
     @Test
     public void binaryOperatorShouldConsumeTwoElementsAndReplaceResult() throws InsufficientOperandsException {
-        evaluator.evaluate(stack, new Plus());
+        evaluator.evaluate(stack, new Plus(1));
         assertEquals(1, stack.size());
     }
 
-    @Test(expected = InsufficientOperandsException.class)
+    @Test
     public void shouldThrowExceptionWhenInsufficientOperands() throws InsufficientOperandsException {
         stack.pop();
-        evaluator.evaluate(stack, new Plus());
+        try {
+            evaluator.evaluate(stack, new Plus(1));
+            fail("Should throw InsufficientOperandsException");
+        } catch (InsufficientOperandsException e) {
+            assertEquals(1, e.tokenNumber);
+        }
     }
 
     @Test
     public void errorShouldNotConsumeOperand() {
         stack.pop();
         try {
-            evaluator.evaluate(stack, new Plus());
+            evaluator.evaluate(stack, new Plus(1));
         } catch (InsufficientOperandsException e) {
             // expected
         }

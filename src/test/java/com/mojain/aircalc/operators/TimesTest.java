@@ -13,7 +13,7 @@ public class TimesTest {
 
     @Before
     public void setUp() {
-        operator = new Times();
+        operator = new Times(1);
     }
 
     @Test
@@ -38,6 +38,6 @@ public class TimesTest {
 
     @Test
     public void equals() {
-        assertEquals(new Times(), new Times());
+        assertEquals(new Times(1), new Times(1));
     }
 }

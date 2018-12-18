@@ -24,7 +24,7 @@ public class UndoTest {
         Stack stack = new Stack();
         (new Push(new Real(1))).invoke(stack);
         (new Push(new Real(2))).invoke(stack);
-        (new Eval(new Plus())).invoke(stack);
+        (new Eval(new Plus(3))).invoke(stack);
         (new Undo()).invoke(stack);
         assertEquals(2, stack.size());
         assertEquals(new Real(2), stack.peek());

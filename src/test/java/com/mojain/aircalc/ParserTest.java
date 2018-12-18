@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.List;
 
+import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -53,12 +54,12 @@ public class ParserTest {
 
     @Test
     public void shouldParseSingleOperator() {
-        assertEquals(Collections.singletonList(new Eval(new Plus())), parser.parse("+"));
+        assertEquals(Collections.singletonList(new Eval(new Plus(1))), parser.parse("+"));
     }
 
     @Test
     public void shouldParseSingleSqrtOperator() {
-        assertEquals(Collections.singletonList(new Eval(new SquareRoot())), parser.parse("sqrt"));
+        assertEquals(Collections.singletonList(new Eval(new SquareRoot(1))), parser.parse("sqrt"));
     }
 
     @Test
@@ -67,7 +68,7 @@ public class ParserTest {
         assertEquals(4, result.size());
         assertEquals(new Push(new Real(1)), result.get(0));
         assertEquals(new Push(new Real(2)), result.get(1));
-        assertEquals(new Eval(new Plus()), result.get(2));
+        assertEquals(new Eval(new Plus(1)), result.get(2));
         assertEquals(new Clear(), result.get(3));
     }
 
@@ -79,5 +80,18 @@ public class ParserTest {
         assertEquals(new Push(new Real(1)), result.get(1));
         assertEquals(new Push(new Real(3)), result.get(2));
         assertEquals(new Quit(), result.get(3));
+    }
+
+    @Test
+    public void shouldSetTokenNumberForEachOperator() {
+        List<Command> result = parser.parse("1 2 + 3 +");
+        Command command = result.get(2);
+        try {
+            command.invoke(new Stack());
+            fail("Should throw InsufficientOperandsException");
+        } catch (InsufficientOperandsException e) {
+            assertEquals(3, e.tokenNumber);
+        }
+
     }
 }
