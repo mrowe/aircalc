@@ -13,11 +13,14 @@ public class AirCalc {
 
         State state = State.RUNNING;
         while ((state == State.RUNNING && in.hasNext())) {
+            int commandIndex = 0;
             for (Command command : parser.parse(in.nextLine())) {
+                commandIndex++;
                 try {
                     state = command.invoke(stack);
                 } catch (InsufficientOperandsException e) {
-                    System.err.format("operator %s (position: %d): insufficient parameters\n", e.getMessage(), 0);
+                    System.err.format("operator %s (position: %d): insufficient parameters\n", e.getMessage(), commandIndex);
+                    break;
                 }
             }
             System.out.println(stack.toString());
