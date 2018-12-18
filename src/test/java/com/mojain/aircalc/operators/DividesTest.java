@@ -13,7 +13,7 @@ public class DividesTest {
 
     @Before
     public void setUp() {
-        operator = new Divides(1);
+        operator = new Divides();
     }
 
     @Test
@@ -38,6 +38,6 @@ public class DividesTest {
 
     @Test
     public void equals() {
-        assertEquals(new Divides(1), new Divides(1));
+        assertEquals(new Divides(), new Divides());
     }
 }

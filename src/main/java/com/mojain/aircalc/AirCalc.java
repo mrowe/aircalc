@@ -17,9 +17,7 @@ public class AirCalc {
                 try {
                     state = command.invoke(stack);
                 } catch (InsufficientOperandsException e) {
-                    System.err.format("operator %s (position: %d): insufficient parameters\n",
-                            e.getMessage(), e.tokenNumber);
-                    break;
+                    System.err.format("operator %s (position: %d): insufficient parameters\n", e.getMessage(), 0);
                 }
             }
             System.out.println(stack.toString());

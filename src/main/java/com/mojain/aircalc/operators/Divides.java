@@ -5,20 +5,9 @@ import com.mojain.aircalc.Real;
 
 public class Divides implements Operator {
 
-    private final int tokenNumber;
-
-    public Divides(int tokenNumber) {
-        this.tokenNumber = tokenNumber;
-    }
-
     @Override
     public int arity() {
         return 2;
-    }
-
-    @Override
-    public int tokenNumber() {
-        return tokenNumber;
     }
 
     @Override

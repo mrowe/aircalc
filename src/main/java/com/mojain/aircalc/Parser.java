@@ -12,10 +12,8 @@ class Parser {
     List<Command> parse(String input) {
         List<Command> commands = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(input);
-        int index = 0;
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken();
-            index++;
 
             if (token.equalsIgnoreCase("undo")) {
                 commands.add(new Undo());
@@ -38,7 +36,7 @@ class Parser {
                 continue;
             }
 
-            Operator operator = tryToParseOperator(token, index);
+            Operator operator = tryToParseOperator(token);
             if (operator != null) {
                 commands.add(new Eval(operator));
                 continue;
@@ -57,12 +55,12 @@ class Parser {
         }
     }
 
-    private Operator tryToParseOperator(String token, int index) {
-        if (token.equalsIgnoreCase("sqrt")) return new SquareRoot(index);
-        if (token.equalsIgnoreCase("+")) return new Plus(index);
-        if (token.equalsIgnoreCase("-")) return new Minus(index);
-        if (token.equalsIgnoreCase("*")) return new Times(index);
-        if (token.equalsIgnoreCase("/")) return new Divides(index);
+    private Operator tryToParseOperator(String token) {
+        if (token.equalsIgnoreCase("sqrt")) return new SquareRoot();
+        if (token.equalsIgnoreCase("+")) return new Plus();
+        if (token.equalsIgnoreCase("-")) return new Minus();
+        if (token.equalsIgnoreCase("*")) return new Times();
+        if (token.equalsIgnoreCase("/")) return new Divides();
         return null;
     }
 }

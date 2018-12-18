@@ -5,20 +5,9 @@ import com.mojain.aircalc.Real;
 
 public class SquareRoot implements Operator {
 
-    private final int tokenNumber;
-
-    public SquareRoot(int tokenNumber) {
-        this.tokenNumber = tokenNumber;
-    }
-
     @Override
     public int arity() {
         return 1;
-    }
-
-    @Override
-    public int tokenNumber() {
-        return tokenNumber;
     }
 
     @Override

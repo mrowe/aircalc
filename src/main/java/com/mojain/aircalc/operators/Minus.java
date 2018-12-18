@@ -5,20 +5,9 @@ import com.mojain.aircalc.Real;
 
 public class Minus implements Operator {
 
-    private final int tokenNumber;
-
-    public Minus(int tokenNumber) {
-        this.tokenNumber = tokenNumber;
-    }
-
     @Override
     public int arity() {
         return 2;
-    }
-
-    @Override
-    public int tokenNumber() {
-        return tokenNumber;
     }
 
     @Override

@@ -23,38 +23,33 @@ public class EvaluatorTest {
 
     @Test
     public void shouldEvaluateASimpleOperation() throws InsufficientOperandsException {
-        evaluator.evaluate(stack, new Plus(1));
+        evaluator.evaluate(stack, new Plus());
         assertEquals(new Real(3), stack.peek());
     }
 
     @Test
     public void unaryOperatorShouldConsumeAndReplaceOneElement() throws InsufficientOperandsException {
-        evaluator.evaluate(stack, new SquareRoot(1));
+        evaluator.evaluate(stack, new SquareRoot());
         assertEquals(2, stack.size());
     }
 
     @Test
     public void binaryOperatorShouldConsumeTwoElementsAndReplaceResult() throws InsufficientOperandsException {
-        evaluator.evaluate(stack, new Plus(1));
+        evaluator.evaluate(stack, new Plus());
         assertEquals(1, stack.size());
     }
 
-    @Test
+    @Test(expected = InsufficientOperandsException.class)
     public void shouldThrowExceptionWhenInsufficientOperands() throws InsufficientOperandsException {
         stack.pop();
-        try {
-            evaluator.evaluate(stack, new Plus(1));
-            fail("Should throw InsufficientOperandsException");
-        } catch (InsufficientOperandsException e) {
-            assertEquals(1, e.tokenNumber);
-        }
+        evaluator.evaluate(stack, new Plus());
     }
 
     @Test
     public void errorShouldNotConsumeOperand() {
         stack.pop();
         try {
-            evaluator.evaluate(stack, new Plus(1));
+            evaluator.evaluate(stack, new Plus());
         } catch (InsufficientOperandsException e) {
             // expected
         }

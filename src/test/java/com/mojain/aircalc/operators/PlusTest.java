@@ -13,7 +13,7 @@ public class PlusTest {
 
     @Before
     public void setUp() {
-        operator = new Plus(1);
+        operator = new Plus();
     }
 
     @Test
@@ -38,6 +38,6 @@ public class PlusTest {
 
     @Test
     public void equals() {
-        assertEquals(new Plus(1), new Plus(1));
+        assertEquals(new Plus(), new Plus());
     }
 }
