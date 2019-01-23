@@ -8,19 +8,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class AirCalcController {
 
     @RequestMapping("/calc")
-    public Greeting calc(@RequestParam(value = "name", defaultValue = "Foo") String name) {
-        return new Greeting(1, String.format("Hello, %s!", name));
+    public PrintableStack calc(@RequestParam(value = "commands", defaultValue = "") String commands) {
+        Stack stack = new Stack();
+        Parser parser = new Parser();
+
+        int commandIndex = 0;
+        for (Command command : parser.parse(commands)) {
+            commandIndex++;
+            try {
+                command.invoke(stack);
+            } catch (InsufficientOperandsException e) {
+                System.err.format("operator %s (position: %d): insufficient parameters\n", e.getMessage(), commandIndex);
+                break;
+            }
+        }
+
+        return new PrintableStack(stack);
     }
 
 }
 
-class Greeting {
+class PrintableStack {
 
-    public final long id;
-    public final String content;
+    public final String stack;
 
-    public Greeting(long id, String content) {
-        this.id = id;
-        this.content = content;
+    public PrintableStack(Stack stack) {
+        this.stack = stack.toString();
     }
 }
