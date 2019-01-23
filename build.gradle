@@ -1,6 +1,17 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+    }
 }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group 'mojain.com'
 version '1.0-SNAPSHOT'
@@ -12,6 +23,7 @@ repositories {
 }
 
 dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
@@ -22,4 +34,9 @@ jar {
                 'Main-Class': 'com.mojain.aircalc.AirCalc'
         )
     }
+}
+
+bootJar {
+    baseName = 'aircalc-service'
+    version = '0.1.0'
 }
